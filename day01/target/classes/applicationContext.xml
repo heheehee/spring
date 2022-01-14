@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tool http://www.springframework.org/schema/tool/spring-tool.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--开启注解扫描范围
+     可以使用通配符 例如 net.seehope.**.mapper
+     也可以同时对多个包开启扫描 例如 net.seehope,org.spring
+
+     aop  面向切面的编程
+     单例 代理 工厂 mvc 建造者
+     -->
+    <context:component-scan base-package="net.seehope"/>
+<!--    . 如果不想在xml文件中配置bean，我们可以给我们的类加上spring组件注解，只需再配置下spring的扫描器就可以实现bean的自动载入。-->
+<!--    @Component，@Repository，@Service，@Controller，就会将这个对象作为Bean注入进spring容器。-->
+    <aop:aspectj-autoproxy/>
+    <tx:annotation-driven/>
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="url" value="jdbc:mysql://localhost:3306/spring"/>
+        <property name="username" value="root"/>
+        <property name="password" value="xiangjiaxin"/>
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.jdbc.support.JdbcTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <aop:config>
+        <aop:pointcut id="txPC" expression="execution(* net.seehope..*.service.impl.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPC"/>
+    </aop:config>
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*Tx"/>
+        </tx:attributes>
+    </tx:advice>
+<!--    通过aop命名空间的<aop:aspectj-autoproxy />声明自动为spring容器中那些配置@aspectJ切面的bean创建代理-->
+
+    <!--
+        <servlet>
+        <servlet-name>userServlet</servlet-name>
+        <servlet-class>net.seehope.web.servlet.UserServlet</servlet-class>
+        <load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>userServlet<servlet-name>
+        <url>/user/login</url>
+    <servlet-mapping>-->
+    <!--IOC inverse of control
+    scope 默认是单例
+    prototype 原型
+    IOC/DI dependency inject 依赖注入
+    -->
+    <bean init-method="init" destroy-method="destory" scope="prototype" id="mockServlet1"
+          class="net.seehope.spring.ioc.mocktomcat.MockServlet1">
+
+    </bean>
+
+    <bean init-method="init" destroy-method="destory" id="mockServlet2"
+          class="net.seehope.spring.ioc.mocktomcat.MockServlet2">
+
+    </bean>
+
+    <bean init-method="init" destroy-method="destory" id="mockServlet3"
+          class="net.seehope.spring.ioc.mocktomcat.MockServlet3">
+        <property name="username" value="123"/>
+        <property name="age" value="321"/>
+        <property name="ids">
+            <list>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+            </list>
+        </property>
+        <property name="mockHttpServlet" ref="mockServlet2"></property>
+        <property name="map">
+            <map>
+                <entry key="key1" value-ref="mockServlet1"></entry>
+                <entry key="key2" value-ref="mockServlet2"></entry>
+            </map>
+        </property>
+        <!-- <constructor-arg name="" value=""<bean id="myAspect" class="net.seehope.spring.aop.MyAspect"/>-->
+        <!--        <aop:config>-->
+        <!--            <aop:aspect ref="myAspect">-->
+        <!--                <aop:pointcut id="pc" expression="execution(* net.seehope..*.service.impl.*.*(..))"/>-->
+
+        <!--&lt;!&ndash;               execution:是对方法签名进行筛选-->
+        <!--                        public:可写可不写-->
+        <!--                        * 表示返回值可以是任意的-->
+        <!--                        net.seehope表示报名开始-->
+        <!--                        .**表示可以省略任意层级-->
+        <!--                        &ndash;&gt;-->
+        <!--                <aop:before method="before" pointcut-ref="pc"/>-->
+        <!--                <aop:around method="around" pointcut-ref="pc"/>-->
+        <!--                <aop:after-returning method="afterReturning" pointcut-ref="pc" returning="result"/>-->
+        <!--                <aop:after-throwing method="afterThrowing" pointcut-ref="pc" throwing="e"/>-->
+        <!--                <aop:after method="after" pointcut-ref="pc"/>-->
+        <!--            </aop:aspect>-->
+        <!--        </aop:config>-->
+    </bean>
+<!--    -->
+
+
+
+<!--    <bean id="userController" class="net.seehope.spring.ioc.web.controller.UserController">-->
+<!--        <property name="userService" ref="userService"></property>-->
+<!--    </bean>-->
+
+<!--    <bean id="userService" class="net.seehope.spring.ioc.service.impl.UserServiceImpl">-->
+<!--        <property name="userMapper" ref="userMapper"></property>-->
+<!--    </bean>-->
+
+<!--    <bean id="userMapper" class="net.seehope.spring.ioc.mapper.UserMapper">-->
+
+<!--    </bean>-->
+</beans>
