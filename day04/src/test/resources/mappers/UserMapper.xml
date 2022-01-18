@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.seehope.mybatis.mapper.UserMapper">
+    <update id="updateUserByVo" parameterType="UserQueryVo">
+        update user u
+        <set>
+            <if test="user.username != null and user.username !=''">
+                u.username = #{user.username} ,
+            </if>
+            <if test="user.birthday !=null">
+                u.birthday = #{user.birthday},
+            </if>
+            <if test="user.sex != null and user.sex !=''">
+                u.sex = #{user.sex},
+            </if>
+            <if test="user.address != null and user.address !=''">
+                u.address = #{user.address},
+            </if>
+            <if test="user.password != null and user.password!=''">
+                u.password = #{user.password},
+            </if>
+            <if test="user.mobile != null and user.mobile !=''">
+                u.mobile = #{user.mobile},
+            </if>
+        </set>
+        where  u.id = #{user.id}
+    </update>
+    <delete id="deleteUserByVo">
+        delete from user u
+        <foreach collection="ids" item="id" open="where u.id in (" close=")" separator=",">
+            #{user.id}
+        </foreach>
+    </delete>
+    <!--以方法的形式封裝SQL语句 id 相当于方法名-->
+    <select id="getAllUser" resultType="net.seehope.mybatis.pojo.User">
+        select *
+        from user;
+    </select>
+    <select id="getUserById" parameterType="int" resultType="user">
+        select * from user where id=#{id}
+    </select>
+    <select id="getUserLikeName" parameterType="string" resultType="User">
+        select * from user u where u.username like '%${value}'
+    </select>
+    <insert id="insertUser" parameterType="User">
+        insert into user(username,birthday,sex,address,password,mobile)
+        values (#{username},#{birthday},#{sex},#{address},#{password},#{mobile})
+    </insert>
+
+    <select id="queryUserByVo" resultType="net.seehope.mybatis.pojo.User" parameterType="UserQueryVo">
+        select * from user u
+        <where>
+            <if test="user!=null">
+                <if test="user.id !=null and user.id!=''">
+                    and u.id = #{user.id}
+                </if>
+                <if test="user.username !=null and user.username!=''">
+                    and u.username = #{user.username}
+                </if>
+                <if test="user.birthday !=null">
+                    and u.birthday = #{user.birthday}
+                </if>
+                <if test="user.sex !=null and user.sex!=''">
+                    and u.sex = #{user.sex}
+                </if>
+                <if test="user.address !=null and user.address!=''">
+                    and u.address = #{user.address}
+                </if>
+                <if test="user.password !=null and user.password!=''">
+                    and u.password = #{user.password}
+                </if>
+                <if test="user.mobile !=null and user.mobile!=''">
+                    and u.mobile = #{user.mobile}
+                </if>
+            </if>
+            <if test="ids!=null and ids.size()!=0">
+                <foreach collection="ids" item="id" open="and id in (" close=")" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="queryUserByHashMap" resultType="net.seehope.mybatis.pojo.User">
+        select *
+        from user
+        where username = #{username}
+          and address = #{address}
+    </select>
+    <resultMap id="basicUserResultMap" type="User">
+        <id property="id" column="id"/>
+        <result column="username" property="username"/>
+        <result column="birthday" property="birthday"/>
+        <result column="sex" property="sex"/>
+        <result column="address" property="address"/>
+        <result column="password" property="password"/>
+        <result column="mobile" property="mobile"/>
+    </resultMap>
+    <resultMap id="userAndOrdersResultMap" type="User" extends="basicUserResultMap">
+        <collection property="orderList" ofType="Order">
+            <id column="o_id" property="id"/>
+            <result property="number" column="number"/>
+            <result property="userId" column="id"/>
+            <result property="createtime" column="createtime"/>
+            <result property="note" column="note"/>
+        </collection>
+    </resultMap>
+    <select id="QueryAllUserAndOrders" resultMap="userAndOrdersResultMap">
+        select u.*,
+               o.id as o_id,
+               o.createtime,
+               o.note,
+               o.number,
+               od.id as od_id,
+               od.items_id,
+               od.items_num,
+               i.id as i_id,
+               i.detail,
+               i.createtime as i_createtime,
+               i.name,
+               i.pic,
+               i.price
+        from user u
+                 right join orders o on u.id=o.user_id
+                 left join orderdetail od on o.id=od.orders_id
+                 left join items i on i.id=od.items_id
+    </select>
+
+    <resultMap id="userAndOrdersAndOrderDetailsResultMap" type="User" extends="basicUserResultMap">
+        <collection property="orderList" ofType="Order">
+            <id column="o_id" property="id"/>
+            <result property="number" column="number"/>
+            <result property="userId" column="id"/>
+            <result property="createtime" column="createtime"/>
+            <result property="note" column="note"/>
+
+            <collection property="orderDetailsList" ofType="OrderDetails">
+                <id property="id" column="od_id"/>
+                <result property="orderId" column="o_id"/>
+                <result property="itemsId" column="items_id"/>
+                <result property="itemsInums" column="items_num"/>
+            </collection>
+        </collection>
+    </resultMap>
+    <select id="QueryAllUserAndOrdersAndOrdersDetails" resultMap="userAndOrdersAndOrderDetailsResultMap">
+        select u.*,
+               o.id as o_id,
+               o.createtime,
+               o.note,
+               o.number,
+               od.id as od_id,
+               od.items_id,
+               od.items_num,
+               i.id as i_id,
+               i.detail,
+               i.createtime as i_createtime,
+               i.name,
+               i.pic,
+               i.price
+        from user u
+                 right join orders o on u.id=o.user_id
+                 left join orderdetail od on o.id=od.orders_id
+                 left join items i on i.id=od.items_id
+    </select>
+    <resultMap id="userAndOrdersAndOrderDetailsAndItemsResultMap" type="User" extends="basicUserResultMap">
+        <collection property="orderList" ofType="Order">
+            <id column="o_id" property="id"/>
+            <result property="number" column="number"/>
+            <result property="userId" column="id"/>
+            <result property="createtime" column="createtime"/>
+            <result property="note" column="note"/>
+
+            <collection property="orderDetailsList" ofType="OrderDetails">
+                <id property="id" column="od_id"/>
+                <result property="orderId" column="o_id"/>
+                <result property="itemsId" column="items_id"/>
+                <result property="itemsInums" column="items_num"/>
+                <association property="items" javaType="Items">
+                    <id column="i_id" property="id"/>
+                    <result property="name" column="name"/>
+                    <result property="price" column="price"/>
+                    <result property="detail" column="detail"/>
+                    <result property="pic" column="pic"/>
+                    <result property="createtime" column="i_createtime"/>
+                </association>
+            </collection>
+        </collection>
+    </resultMap>
+    <select id="QueryAllUserAndOrdersAndOrdersDetailsAndItems" resultMap="userAndOrdersAndOrderDetailsAndItemsResultMap">
+        select u.*,
+               o.id as o_id,
+               o.createtime,
+               o.note,
+               o.number,
+               od.id as od_id,
+               od.items_id,
+               od.items_num,
+               i.id as i_id,
+               i.detail,
+               i.createtime as i_createtime,
+               i.name,
+               i.pic,
+               i.price
+        from user u
+                 right join orders o on u.id=o.user_id
+                 left join orderdetail od on o.id=od.orders_id
+                 left join items i on i.id=od.items_id
+    </select>
+    <resultMap id="queryALLUserLazyLoadMap" type="User" extends="basicUserResultMap">
+        <collection property="orderList" ofType="Order" select="net.seehope.mybatis.mapper.OrderMapper.getOrderByUserId" column="id">
+        </collection>
+    </resultMap>
+    <select id="queryAllUserLazyLoad" resultMap="queryALLUserLazyLoadMap">
+        select * from user
+    </select>
+    <cache/>
+</mapper>

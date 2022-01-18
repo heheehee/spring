@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b23494ee-8583-4459-b960-dc4d0e1f935a" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="23nxiggjIxjkeCEUHNniXyFrUPP" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RunManager" selected="JUnit.MybatisMain.testQuerAllUserLazyLoad">
+    <configuration name="MybatisMain.QueryAllUserAndOrdersAndOrderDetailsAndItems" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="day04" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.seehope.mybatis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="net.seehope.mybatis" />
+      <option name="MAIN_CLASS_NAME" value="net.seehope.mybatis.MybatisMain" />
+      <option name="METHOD_NAME" value="QueryAllUserAndOrdersAndOrderDetailsAndItems" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MybatisMain.testGetUserByUserId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="day04" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.seehope.mybatis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="net.seehope.mybatis" />
+      <option name="MAIN_CLASS_NAME" value="net.seehope.mybatis.MybatisMain" />
+      <option name="METHOD_NAME" value="testGetUserByUserId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MybatisMain.testQuerAllUserLazyLoad" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="day04" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.seehope.mybatis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="net.seehope.mybatis" />
+      <option name="MAIN_CLASS_NAME" value="net.seehope.mybatis.MybatisMain" />
+      <option name="METHOD_NAME" value="testQuerAllUserLazyLoad" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MybatisMain.testQueryAllUserAndOrdersAndOrderDetails" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="day04" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.seehope.mybatis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="net.seehope.mybatis" />
+      <option name="MAIN_CLASS_NAME" value="net.seehope.mybatis.MybatisMain" />
+      <option name="METHOD_NAME" value="testQueryAllUserAndOrdersAndOrderDetails" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MybatisMain.testQueryAllUserAndOrdersAndOrdersDetailsAndItems" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="day04" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.seehope.mybatis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="net.seehope.mybatis" />
+      <option name="MAIN_CLASS_NAME" value="net.seehope.mybatis.MybatisMain" />
+      <option name="METHOD_NAME" value="testQueryAllUserAndOrdersAndOrdersDetailsAndItems" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.MybatisMain.testQuerAllUserLazyLoad" />
+        <item itemvalue="JUnit.MybatisMain.testGetUserByUserId" />
+        <item itemvalue="JUnit.MybatisMain.testQueryAllUserAndOrdersAndOrdersDetailsAndItems" />
+        <item itemvalue="JUnit.MybatisMain.testQueryAllUserAndOrdersAndOrderDetails" />
+        <item itemvalue="JUnit.MybatisMain.QueryAllUserAndOrdersAndOrderDetailsAndItems" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b23494ee-8583-4459-b960-dc4d0e1f935a" name="Default Changelist" comment="" />
+      <created>1642383783856</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1642383783856</updated>
+      <workItem from="1642383785611" duration="4957000" />
+      <workItem from="1642399453316" duration="7148000" />
+      <workItem from="1642408904526" duration="7017000" />
+      <workItem from="1642469011500" duration="4065000" />
+      <workItem from="1642485422112" duration="10494000" />
+      <workItem from="1642497874300" duration="1225000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>
