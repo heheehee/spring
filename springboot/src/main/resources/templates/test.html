@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>username</th>
+            <th>birthday</th>
+
+            <th>sex</th>
+            <th>address</th>
+            <th>password</th>
+            <th>mobile</th>
+        </tr>
+        <tr th:each="user:${users}">
+            <td th:text="${user.id}">id</td>
+            <td th:text="${user.username}">username</td>
+            <td th:text="${#dates.format(user.birthday,'yyyy-MM-dd hh:mm:ss')}">birthday</td>
+
+            <td th:text="${user.sex}">sex</td>
+            <td th:text="${user.address}">address</td>
+            <td th:text="${user.password}">password</td>
+            <td th:text="${user.mobile}">mobile</td>
+        </tr>
+    </table>
+</body>
+</html>

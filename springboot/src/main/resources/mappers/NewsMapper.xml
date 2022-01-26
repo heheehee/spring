@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.seehope.springboot.mapper.NewsMapper">
+    <insert id="insertNews" parameterType="net.seehope.springboot.pojo.News">
+        insert into news(author_avatar, author_email, author_name,
+                         column_id, column_name, comments_count, content,
+                         cover, created_at, from_id, post_id,
+                         published_at, store_at, summary, title,
+                         type, updated_at,
+                         views_count)
+        values (#{authorAvatar}, #{authorEmail},
+                #{authorName}, #{columnId}, #{columnName}, #{commentsCount}, #{content},
+                #{cover}, #{createdAt}, #{fromId}, #{postId}, #{publishedAt}, #{storeAt},
+                #{summary}, #{title}, #{type}, #{updatedAt}, #{viewsCount})
+    </insert>
+</mapper>
